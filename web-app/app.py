@@ -4,6 +4,11 @@ from binascii import a2b_base64
 import random
 import cv2
 
+from keras.models import load_model
+import pickle
+BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
+model = load_model('kaggle-ip/conv_model_Final.hdf5', compile=False)
+
 app = Flask(__name__)
 
 
@@ -28,8 +33,12 @@ def get_image():
     fd = open(f'uploads/image-{count}.png', 'wb')
     fd.write(binary_data)
     fd.close()
+    # ---------------------------------------
+    arr = prepareImg(count)
+    chrX = load_conv_model(arr)
+    # ---------------------------------------
     load_conv_model()
-    return f'{count}'
+    return f'{count} -> {chrX}'
 
 
 # Open it with Numpy Reshape it
@@ -38,13 +47,14 @@ def get_image():
 # Get Result Return Request
 
 # Starting and Loading the Modell
-def load_conv_model():
-    from keras.models import load_model
-    model = load_model('kaggle-ip/conv_model.hdf5')
-    model.summary()
-
+def load_conv_model(arr):
+    result = model.predict(arr)
+    character = BE.classes_[np.argmax(result)]
+    return character
 
 # Take the Image and return Resized Numpy Array
+
+
 def prepareImg(number):
     img = cv2.imread(f'uploads/image-{number}.png')
     img = cv2.resize(img, (32, 32))
