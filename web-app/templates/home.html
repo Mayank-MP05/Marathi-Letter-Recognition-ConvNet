@@ -45,14 +45,18 @@
           ></div>
           <div class="d-inline w-100 text-center btn-socket">
             <button class="btn btn-danger" onclick="ResetBG()">Clear</button>
-            <form enctype="multipart/form-data" method="POST">
-              <input
-                type="submit"
-                class="btn btn-success"
-                onclick="GetImageURL()"
-              />
-            </form>
+
+            <button
+              type="submit"
+              class="btn btn-success"
+              onclick="GetImageURL()"
+            >
+              Predict
+            </button>
           </div>
+          <form method="POST" enctype="multipart/form-data" id="imgForm">
+            <input type="file" name="file1" id="file1" />
+          </form>
         </div>
         <div class="col-7">
           <h5>Predictions from Drawn Images :</h5>
