@@ -25,28 +25,14 @@ const ResetBG = () => {
 
 const GetImageURL = () => {
   url = simpleBoard.getImg();
-  console.log(url);
-  formData = new FormData();
-  formData.append("imagedata", url);
-  /*
-    $.ajax({
-      url: "/upload",
-      type: "POST",
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: formData,
-    }).done(function (e) {
-      alert(e);
-    });
-  */
   $.ajax({
     type: "POST",
-    url: "/hook",
-    data:{
-      imageBase64: url
-    }
-  }).done(function() {
-    console.log('sent');
+    url: "/upload",
+    data: {
+      imageBase64: url,
+    },
+  }).done(function (e) {
+    console.log("Image Request Sent ...");
+    console.log(e);
   });
 };
