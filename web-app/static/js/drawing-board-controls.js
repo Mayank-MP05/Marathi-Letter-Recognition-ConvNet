@@ -19,7 +19,7 @@ function why() {
 }
 
 const ResetBG = () => {
-  console.log(simpleBoard);
+  //console.log(simpleBoard);
   simpleBoard.resetBackground();
 };
 
@@ -34,5 +34,6 @@ const GetImageURL = () => {
   }).done(function (e) {
     console.log("Image Request Sent ...");
     console.log(e);
+    ResetBG();
   });
 };

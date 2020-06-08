@@ -28,6 +28,7 @@ def get_image():
     fd = open(f'uploads/image-{count}.png', 'wb')
     fd.write(binary_data)
     fd.close()
+    load_conv_model()
     return f'{count}'
 
 
@@ -35,3 +36,9 @@ def get_image():
 # Start the Model
 # Feed this Input Image
 # Get Result Return Request
+
+# Starting and Loading the Modell
+def load_conv_model():
+    from keras.models import load_model
+    model = load_model('kaggle-ip/conv_model.hdf5')
+    model.summary()
