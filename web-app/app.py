@@ -6,6 +6,8 @@ import cv2
 
 from keras.models import load_model
 import pickle
+from sklearn.preprocessing import LabelBinarizer
+
 BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
 model = load_model('kaggle-ip/conv_model_Final.hdf5', compile=False)
 
@@ -37,7 +39,6 @@ def get_image():
     arr = prepareImg(count)
     chrX = load_conv_model(arr)
     # ---------------------------------------
-    load_conv_model()
     return f'{count} -> {chrX}'
 
 
