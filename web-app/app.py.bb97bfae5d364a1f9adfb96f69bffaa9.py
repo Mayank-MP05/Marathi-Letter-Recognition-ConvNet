@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect
 import os
 from binascii import a2b_base64
 import random
-import cv2
+import cv2 
 
 app = Flask(__name__)
 
@@ -43,10 +43,8 @@ def load_conv_model():
     model = load_model('kaggle-ip/conv_model.hdf5')
     model.summary()
 
-
 # Take the Image and return Resized Numpy Array
 def prepareImg(number):
-    img = cv2.imread(f'uploads/image-{number}.png')
-    img = cv2.resize(img, (32, 32))
-    img = img.reshape(1, 32, 32, 1)
+    img = cv2.imread(f'uploads/image-{count}.png')
+    img = cv2.resize(img,(32,32))
     return img
