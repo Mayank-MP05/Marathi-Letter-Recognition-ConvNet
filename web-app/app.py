@@ -24,9 +24,14 @@ def get_image():
     # Removing Prefix from Data URI
     data = image_b64.replace("data:image/png;base64,", '')
     binary_data = a2b_base64(data)
-
+    # Get the Images Saved in Upload Folder
     fd = open(f'uploads/image-{count}.png', 'wb')
     fd.write(binary_data)
     fd.close()
-    count += 1
-    return f'Image {count} - Saved in DB'
+    return f'{count}'
+
+
+# Open it with Numpy Reshape it
+# Start the Model
+# Feed this Input Image
+# Get Result Return Request
