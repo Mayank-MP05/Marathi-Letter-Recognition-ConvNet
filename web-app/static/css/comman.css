@@ -18,5 +18,15 @@ body {
 p.text-light {
   padding: 0;
   margin: 0;
-  line-height: 0.75;
+}
+
+.square-board {
+  width: 250px;
+  height: 250px;
+}
+
+.btn-socket button {
+  width: 45%;
+  padding: 5px;
+  margin: auto;
 }

@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="static/drawing-board/drawingboard.min.css" />
     <link rel="stylesheet" href="static/css/comman.css" />
   </head>
   <body>
@@ -34,9 +35,19 @@
     </nav>
 
     <!-- Body araa -->
-    <div class="container">
+    <div class="container py-2">
       <div class="row">
-        <div class="col-5">col-5</div>
+        <div class="col-5">
+          <h6>Draw that Character on Board below</h6>
+          <div
+            class="board drawing-board square-board m-2"
+            id="simple-board"
+          ></div>
+          <div class="d-inline w-100 text-center btn-socket">
+            <button class="btn btn-danger" onclick="ResetBG()">Clear</button>
+            <button class="btn btn-success">Predict</button>
+          </div>
+        </div>
         <div class="col-7">col-7</div>
       </div>
     </div>
@@ -60,5 +71,8 @@
         >
       </p>
     </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="static/drawing-board/drawingboard.min.js"></script>
+    <script src="static/js/drawing-board-controls.js"></script>
   </body>
 </html>
