@@ -3,12 +3,12 @@ import os
 from binascii import a2b_base64
 import random
 import cv2
-
 from keras.models import load_model
 import pickle
 from sklearn.preprocessing import LabelBinarizer
+import numpy as np
 
-BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
+#BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
 model = load_model('kaggle-ip/conv_model_Final.hdf5', compile=False)
 
 app = Flask(__name__)
@@ -50,7 +50,7 @@ def get_image():
 # Starting and Loading the Modell
 def load_conv_model(arr):
     result = model.predict(arr)
-    character = BE.classes_[np.argmax(result)]
+    character = np.argmax(result)
     return character
 
 # Take the Image and return Resized Numpy Array
@@ -58,6 +58,7 @@ def load_conv_model(arr):
 
 def prepareImg(number):
     img = cv2.imread(f'uploads/image-{number}.png')
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (32, 32))
     img = img.reshape(1, 32, 32, 1)
     return img
