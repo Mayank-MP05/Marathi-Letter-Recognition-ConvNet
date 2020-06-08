@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect
 import os
-import numpy as np
 from binascii import a2b_base64
 import random
 
