@@ -8,16 +8,22 @@ var simpleBoard = new DrawingBoard.Board("simple-board", {
 //simpleBoard.addControl("Download"); //if the DrawingBoard.Control.Download class exists
 
 //listen to an event
-//simpleBoard.ev.bind("board:reset", why);
+simpleBoard.ev.bind("board:reset", why);
 
 //stop listening to it
 
-//simpleBoard.ev.unbind("board:reset", why);
+simpleBoard.ev.unbind("board:reset", why);
 
 function why() {
   alert("OH GOD WHY");
 }
 
 const ResetBG = () => {
-  simpleBoard.reset();
+  console.log(simpleBoard);
+  simpleBoard.resetBackground();
+};
+
+const GetImageURL = () => {
+  url = simpleBoard.getImg();
+  console.log(url);
 };
