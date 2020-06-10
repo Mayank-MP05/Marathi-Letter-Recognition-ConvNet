@@ -1,14 +1,8 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, jsonify, send_file
 import os
 from binascii import a2b_base64
 import random
-import cv2
-from keras.models import load_model
-import pickle
-from sklearn.preprocessing import LabelBinarizer
 import numpy as np
-import tensorflow as tf
-from keras import backend as K
 from conv_model import GetPredict
 
 #BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
@@ -19,19 +13,19 @@ app = Flask(__name__)
 # graph1 = tf.get_default_graph()
 # K.clear_session()
 
+# Open it with Numpy Reshape it
+# Start the Model
+# Feed this Input Image
+# Get Result Return Request
+
 
 @app.route('/ref')
 def ref():
     return render_template('ref.html')
 
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-
 @app.route('/upload', methods=['POST'])
-def get_image():
+def uploadAndPredict():
     image_b64 = request.values['imageBase64']
     count = random.randint(0, 10000)
     # Removing Prefix from Data URI
@@ -41,15 +35,25 @@ def get_image():
     fd = open(f'uploads/image-{count}.png', 'wb')
     fd.write(binary_data)
     fd.close()
-    # ---------------------------------------
-    # arr = prepareImg(count)
-    # chrX = load_conv_model(arr)
-    # ---------------------------------------
+    # Getting Prediction from Conv-model
     chrX = GetPredict(count)
-    return f'{count} -> {chrX}'
+
+    # Sending the JSON response of the Object
+    res = {
+        "imageID": count,
+        "prediction": chrX
+    }
+    return jsonify(res)
+
+# Function to send image according to Id
 
 
-# Open it with Numpy Reshape it
-# Start the Model
-# Feed this Input Image
-# Get Result Return Request
+@app.route('/image/<imageID>')
+def getImage(imageID):
+    filename = f'uploads/image-{imageID}.png'
+    return send_file(filename, mimetype='image/png')
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
