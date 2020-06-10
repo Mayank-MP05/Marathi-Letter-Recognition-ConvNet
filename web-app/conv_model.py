@@ -6,7 +6,6 @@ import numpy as np
 from labels import labels
 
 import warnings
-warnings.simplefilter("ignore")
 
 model = load_model('kaggle-ip/conv_model_Final.hdf5', compile=False)
 graph = tf.get_default_graph()
@@ -51,15 +50,23 @@ def prepareImg(number):
     return img
 
 
-model.summary()
-#BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
+# model.summary()
+# BE = pickle.load(open('kaggle-ip/labelBinarizerFinal.pickle', 'rb'))
 
-with graph.as_default():
-    pred = model.predict(prepareImg(39))
-    index = np.argmax(pred)
-    print(labels[index])
-    #chr = BE.classes_[index]
-    # print(chr)
+def GetPredict(x):
+    with graph.as_default():
+        pred = model.predict(prepareImg(x))
+        warnings.simplefilter("ignore")
+
+        index = np.argmax(pred)
+        # index -= 1
+        print(labels[index])
+        return labels[index]
+        #chr = BE.classes_[index]
+        # print(chr)
+
+
+# GetPredict(41)
 
 """
 Running Script :
