@@ -61,4 +61,5 @@ def prepareImg(number):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (32, 32))
     img = img.reshape(1, 32, 32, 1)
+    print(img.shape)
     return img
