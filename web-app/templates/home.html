@@ -58,7 +58,7 @@
         <div class="col-7">
           <h5>Predictions from Drawn Images :</h5>
           <table class="table table-bordered">
-            <thead>
+            <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Drawn Image</th>
@@ -67,19 +67,42 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <th scope="row" id="current-count">Current</th>
+                <td id="current-img">Loading...</td>
+                <td id="current-prediction">Loading...</td>
               </tr>
               <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
+                <th scope="row">Previous</th>
+                <td>
+                  <img
+                    src="http://localhost:5000/image/1343"
+                    alt=""
+                    class="thumb-img"
+                  />
+                </td>
+                <td>character_06_cha</td>
               </tr>
               <tr>
-                <th scope="row">3</th>
-                <td>Larry the Bird</td>
-                <td>@twitter</td>
+                <th scope="row">Previous</th>
+                <td>
+                  <img
+                    src="http://localhost:5000/image/9386"
+                    alt=""
+                    class="thumb-img"
+                  />
+                </td>
+                <td>character_25_ma</td>
+              </tr>
+              <tr>
+                <th scope="row">Previous</th>
+                <td>
+                  <img
+                    src="http://localhost:5000/image/5376"
+                    alt=""
+                    class="thumb-img"
+                  />
+                </td>
+                <td>character_02_kha</td>
               </tr>
             </tbody>
           </table>
@@ -109,5 +132,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="static/drawing-board/drawingboard.min.js"></script>
     <script src="static/js/drawing-board-controls.js"></script>
+    <script src="static/js/imageAndTextUpdate.js"></script>
   </body>
 </html>

@@ -19,12 +19,13 @@ function why() {
 }
 
 const ResetBG = () => {
-  //console.log(simpleBoard);
+  console.log("Reset BG called");
   simpleBoard.resetBackground();
 };
 
 const GetImageURL = () => {
   url = simpleBoard.getImg();
+  console.log("Image Request Sent ...");
   $.ajax({
     type: "POST",
     url: "/upload",
@@ -32,8 +33,8 @@ const GetImageURL = () => {
       imageBase64: url,
     },
   }).done(function (e) {
-    console.log("Image Request Sent ...");
-    console.log(e);
+    updateTable(e);
     ResetBG();
+    console.log(e);
   });
 };

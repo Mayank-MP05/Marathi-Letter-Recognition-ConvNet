@@ -30,3 +30,13 @@ p.text-light {
   padding: 5px;
   margin: auto;
 }
+
+.thumb-img {
+  width: 70px;
+  height: 70px;
+}
+
+tr td:first-child {
+  display: flex;
+  justify-content: center;
+}
