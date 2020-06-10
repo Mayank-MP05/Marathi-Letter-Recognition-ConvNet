@@ -3,7 +3,7 @@ import cv2
 from keras.models import load_model
 import tensorflow as tf
 import numpy as np
-
+from labels import labels
 
 import warnings
 warnings.simplefilter("ignore")
@@ -57,6 +57,12 @@ model.summary()
 with graph.as_default():
     pred = model.predict(prepareImg(39))
     index = np.argmax(pred)
-    print(index)
+    print(labels[index])
     #chr = BE.classes_[index]
     # print(chr)
+
+"""
+Running Script :
+python -W ignore conv_model.py
+
+"""
