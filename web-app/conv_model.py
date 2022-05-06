@@ -7,8 +7,8 @@ from labels import labels
 
 import warnings
 
-model = load_model('kaggle-ip/conv_model_Final.hdf5', compile=False)
-graph = tf.get_default_graph()
+
+graph = tf.compat.v1.get_default_graph()
 
 """
 _________________________________________________________________
@@ -55,6 +55,7 @@ def prepareImg(number):
 
 def GetPredict(x):
     with graph.as_default():
+        model = load_model('kaggle-ip/conv_model_Final.hdf5', compile=False)
         pred = model.predict(prepareImg(x))
         warnings.simplefilter("ignore")
 
